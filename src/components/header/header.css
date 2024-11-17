@@ -1,0 +1,61 @@
+.header h1 {
+    text-align: center;
+    font-family: "Kanit",sans-serif;
+    filter: drop-shadow(0px 2px 0px black);
+    font-size: 26px;
+    font-weight: 400;    
+}
+
+.header-form {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-form form {
+    width: 595px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #6C63FF;
+    border-radius: 5px;
+}
+.header-form form input {
+    width: 96%;
+    height: 100%;
+    padding: 11px 16px;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-family: "Inter",sans-serif;
+    font-size: 16px;
+    color: #6C63FF;
+}
+
+.header-form form button {
+    height: 100%;
+    width: 35px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.header-form select {
+    height: 38px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    background-color: #6C63FF;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.header-form .color-btn {
+    width: 38px;
+    height: 38px;
+    background-color: #6C63FF;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
