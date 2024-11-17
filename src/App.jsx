@@ -18,3 +18,6 @@ const App = () => {
 };
 
 export default App;
+
+// figma link
+// https://www.figma.com/design/60vknWTtJiUCiHlxerMZgt/Simple-ToDo-List-Design-(Community)?node-id=1-2&node-type=frame&t=8D8I65UQZRqTzIWW-0
