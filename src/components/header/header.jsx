@@ -4,7 +4,7 @@ import { setFilter, setSearch } from "../../store/Slices/data.slice";
 import "./header.css";
   
 const Header = () => {
-  const { filter, search } = useData();
+  const { filter, search } = useData();  
   const dispatch = useDispatch();
 
   const handleFilter = (e) => {
@@ -18,16 +18,15 @@ const Header = () => {
     <div className="header">
       <h1>TODO LIST</h1>
       <div className="header-form">
-        <form>
+        <form onSubmit={(e)=>e.preventDefault()}>
           <input
             value={search}
-            onChange={handleSearch}
             type="text"
+            onChange={handleSearch}
             placeholder="Search note..."
           />
-          <button>
-            {" "}
-            <img src="/search.svg" alt="" />{" "}
+          <button type="submit">
+            <img src="/search.svg" alt="" />
           </button>
         </form>
         <select value={filter} onChange={handleFilter}>

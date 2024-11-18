@@ -14,12 +14,12 @@ const Data = createSlice({
         text: payload,
         completed: false,
       });
-      localStorage.setItem("data", JSON.stringify(state));
+      localStorage.setItem("data", JSON.stringify({ ...state, search: "" }));
       return state;
     },
     removeData: (state, { payload }) => {
-      state.todo = state.todo.filter((item) => item != payload.id);      
-      localStorage.setItem("data", JSON.stringify(state));
+      state.todo = state.todo.filter((item) => item.id !== payload.id);
+      localStorage.setItem("data", JSON.stringify({ ...state, search: "" }));
       return state;
     },
     clearData: (state, _) => {
@@ -34,17 +34,30 @@ const Data = createSlice({
           ? { ...todo, completed: !todo.completed }
           : item;
       });
-      localStorage.setItem("data", JSON.stringify(state));
+      localStorage.setItem("data", JSON.stringify({ ...state, search: "" }));
+      return state
     },
     setFilter: (state, { payload }) => {
       state.filter = payload;
-      localStorage.setItem("data", JSON.stringify(state));
+      localStorage.setItem("data", JSON.stringify({ ...state, search: "" }));
       return state;
     },
     setSearch: (state, { payload }) => {
       state.search = payload;
       return state;
     },
+    updateTodo: (state, { payload }) => {
+      const todo = state.todo.filter((item) => item.id === payload.id)[0];
+      if (todo) {
+        state.todo = state.todo.map((item) => {
+          return item.id == todo.id
+            ? payload
+            : item;
+        });
+        localStorage.setItem("data", JSON.stringify({ ...state, search: "" }));
+        return state
+      }
+    }
   },
 });
 
@@ -55,5 +68,6 @@ export const {
   toggleTodo,
   setFilter,
   setSearch,
+  updateTodo
 } = Data.actions;
 export default Data.reducer;

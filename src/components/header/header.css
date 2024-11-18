@@ -1,9 +1,22 @@
+.header {
+    padding-top: 40px;
+}
 .header h1 {
     text-align: center;
     font-family: "Kanit",sans-serif;
     filter: drop-shadow(0px 2px 0px black);
     font-size: 26px;
-    font-weight: 400;    
+    font-weight: 400; 
+    animation: headerH1 1s ease-in-out ;   
+}
+
+@keyframes headerH1 {
+    from{
+        transform: translateY(-20px);
+    }
+    to{
+        transform: translateY(0px);
+    }
 }
 
 .header-form {
@@ -20,7 +33,18 @@
     align-items: center;
     border: 2px solid #6C63FF;
     border-radius: 5px;
+    animation: headerForm 1s ease-in-out;
 }
+
+@keyframes headerForm {
+    from {
+        transform: translateX(-100px);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+
 .header-form form input {
     width: 96%;
     height: 100%;
@@ -50,6 +74,16 @@
     border-radius: 5px;
     outline: none;
     cursor: pointer;
+    animation: headerSelect 1s ease-in-out;
+}
+
+@keyframes headerSelect {
+    from {
+        transform: translateX(100px);
+    }
+    to {
+        transform: translateX(0px);
+    }
 }
 .header-form .color-btn {
     width: 38px;
@@ -58,4 +92,14 @@
     border-radius: 5px;
     border: 1px solid transparent;
     cursor: pointer;
+    animation: headerBtn 1s ease-in-out;
+}
+
+@keyframes headerBtn {
+    from {
+        transform: translateX(120px);
+    }
+    to {
+        transform: translateX(0px);
+    }
 }

@@ -3,16 +3,24 @@ import Header from "./components/header/header";
 import Main from "./components/main/main";
 import Modal from "./components/modal/modal";
 import { useModal } from "./store/useSelector";
+import { useDispatch } from "react-redux";
+import { CloseModal } from "./store/Slices/modal.slice";
+import Toastify from "./components/toastify/toastify";
 
 const App = () => {
-  const modal = useModal();
+  const {isActive} = useModal();
+  const dispatch = useDispatch()
+
   return (
     <>
-      <div className="app">
+    <Toastify />
+      <main>
         <Header />
         <Main />
+      </main>
+      <div className={`${isActive ? "active-main" : ""}`} onClick={() => dispatch(CloseModal({}))}>
       </div>
-      {modal && <Modal />}
+      {isActive && <Modal />}
     </>
   );
 };

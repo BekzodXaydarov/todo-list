@@ -1,20 +1,35 @@
 import { useDispatch } from "react-redux";
 import { useData } from "../../store/useSelector";
-import { OpenModal } from "../../store/Slices/modal.slice";
+import { OpenModal, setUpdate } from "../../store/Slices/modal.slice";
 import "./main.css";
 import { removeData, toggleTodo } from "../../store/Slices/data.slice";
+import { useMemo } from "react";
 
 const Main = () => {
-  const { todo } = useData();
+  const { todo, filter, search } = useData();
   const dispatch = useDispatch();
   const handleOpenModal = () => {
     dispatch(OpenModal({}));
   };
+  const handleUpdate = (item) => {
+    handleOpenModal()
+    dispatch(setUpdate(item))
+  }
+  const filteredTodos = useMemo(() => {
+    if (filter === "complete") {
+      return todo.filter((item) => item.completed);
+    }
+    if (filter === "incomplete") {
+      return todo.filter((item) => !item.completed);
+    }
+    return todo;
+  }, [todo, filter]);
+
   return (
     <div className="main">
       {todo.length > 0 ? (
         <ul>
-          {todo.map((item) => {            
+          {filteredTodos.filter((item) => item.text.toLowerCase().includes(search.toLowerCase())).map((item) => {
             return (
               <li key={item.id}>
                 <div className="list-info">
@@ -34,9 +49,9 @@ const Main = () => {
                 </div>
                 <div className="list-icon">
                   <button>
-                    <img src="/pen1.svg" alt="" />
+                    <img src="/pen1.svg" alt="" onClick={() => handleUpdate(item)} />
                   </button>
-                  <button  onClick={()=>dispatch(removeData(item))}>
+                  <button onClick={() => dispatch(removeData(item))}>
                     <img src="/bin1.svg" alt="" />
                   </button>
                 </div>
@@ -45,7 +60,7 @@ const Main = () => {
           })}
         </ul>
       ) : (
-        <img src="/LIST.png" />
+        <img src="/LIST.png" className="empty-img" />
       )}
       <div className="add-btn" onClick={handleOpenModal}>
         <img src="/plus.svg" alt="" />
