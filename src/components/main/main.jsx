@@ -41,7 +41,7 @@ const Main = () => {
                       className="custom-checkbox"
                       onChange={() => dispatch(toggleTodo(item.id))}
                     >
-                      <input type="checkbox" checked={item.completed} onChange={() => dispatch(toggleTodo(item.id))} />
+                      <input type="checkbox" checked={item.completed} onChange={() =>{}} />
                       <span></span>
                     </label>
                     <h1
