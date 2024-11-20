@@ -1,83 +1,151 @@
 .main {
-    padding-left: 115px;
-    position: relative;
-    padding-bottom: 40px;
-    height: 70vh;
+  position: relative;
+  height: 70%;
+  margin-top: 30px;
 }
-.main  .empty-img {
-    padding-top: 30px;
+.main .empty-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  animation: animation1 1s ease-in-out;
 }
+
+.main .empty-box .empty-box-title {
+  margin-top: 20px;
+  font-family: "Kanit",sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
 .main .add-btn {
-    width: 50px;
-    height: 50px;
-    background-color: #6C63FF;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    right: 8px;
-    cursor: pointer;
-    transition: all .5s ease-in-out;
+  width: 50px;
+  height: 50px;
+  background-color: #6c63ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  right: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  animation: animation1 1s ease-in-out;
 }
 
 .main .add-btn:hover {
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 .main ul {
-    height: 100%;
-    overflow-y: auto;
+  height: 100%;
+  overflow-y: auto;
+  padding-left: 115px;
 }
 .main ul li {
-    width: 520px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 17px;
-    border-bottom: 1px solid #6C63FF;
-    padding-bottom: 17px;
+  width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 17px;
+  border-bottom: 1px solid #6c63ff;
+  padding-bottom: 17px;
+  animation: animation1 1s ease-in-out;
 }
 
 .main ul li:last-child {
-    border: none !important;
+  border: none !important;
 }
 
 .main ul li .list-info {
-    display: flex;
-    align-items: center;
-    gap: 17px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
 }
 
 .main ul li .list-info input {
-    width: 26px;
-    height: 26px;
-    border: 1px solid #6C63FF;
-    cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #6c63ff;
+  cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: #eee;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  
+}
+
+.custom-checkbox input[type="checkbox"]:checked + span {
+  background: #6f46f4;
+  border-color: #6f46f4;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + span:after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .main ul li h1 {
-    font-family: "Kanit", sans-serif;
-    font-size: 20px;
-    font-weight: 300;
+  font-family: "Kanit", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
 }
 
-
-
 .main ul li .list-icon {
-    display: flex;
-    gap: 15px;
-    transition: all .4s ease-in-out;
+  display: flex;
+  gap: 15px;
+  transition: all 0.4s ease-in-out;
 }
 
 .main ul li .list-icon button {
-    background-color: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    opacity: 0.2;
-    transition: all .5s ease-in-out;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  opacity: 0.2;
+  transition: all 0.5s ease-in-out;
 }
 
 .main ul li .list-icon button:hover {
-    opacity: 1;
+  opacity: 1;
+}
+
+@keyframes animation1 {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.darkMode .main :where(li,.empty-box-title) {
+  color: white;
+}
+
+@media screen and (max-width:700px) {
+  .main ul {
+    padding-left: 10px;
+  }
+  .main ul li {
+    width: 100%;
+  }
 }

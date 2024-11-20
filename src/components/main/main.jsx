@@ -12,9 +12,9 @@ const Main = () => {
     dispatch(OpenModal({}));
   };
   const handleUpdate = (item) => {
-    handleOpenModal()
-    dispatch(setUpdate(item))
-  }
+    handleOpenModal();
+    dispatch(setUpdate(item));
+  };
   const filteredTodos = useMemo(() => {
     if (filter === "complete") {
       return todo.filter((item) => item.completed);
@@ -29,38 +29,51 @@ const Main = () => {
     <div className="main">
       {todo.length > 0 ? (
         <ul>
-          {filteredTodos.filter((item) => item.text.toLowerCase().includes(search.toLowerCase())).map((item) => {
-            return (
-              <li key={item.id}>
-                <div className="list-info">
-                  <input
-                    type="checkbox"
-                    checked={item.completed}
-                    onChange={() => dispatch(toggleTodo(item.id))}
-                  />
-                  <h1
-                    style={{
-                      textDecoration: item.completed ? "line-through" : "",
-                      opacity: item.completed ? "0.2" : "1",
-                    }}
-                  >
-                    {item.text}
-                  </h1>
-                </div>
-                <div className="list-icon">
-                  <button>
-                    <img src="/pen1.svg" alt="" onClick={() => handleUpdate(item)} />
-                  </button>
-                  <button onClick={() => dispatch(removeData(item))}>
-                    <img src="/bin1.svg" alt="" />
-                  </button>
-                </div>
-              </li>
-            );
-          })}
+          {filteredTodos
+            .filter((item) =>
+              item.text.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((item) => {
+              return (
+                <li key={item.id}>
+                  <div className="list-info">
+                    <label
+                      className="custom-checkbox"
+                      onChange={() => dispatch(toggleTodo(item.id))}
+                    >
+                      <input type="checkbox" checked={item.completed} onChange={() => dispatch(toggleTodo(item.id))} />
+                      <span></span>
+                    </label>
+                    <h1
+                      style={{
+                        textDecoration: item.completed ? "line-through" : "",
+                        opacity: item.completed ? "0.4" : "1",
+                      }}
+                    >
+                      {item.text}
+                    </h1>
+                  </div>
+                  <div className="list-icon">
+                    <button>
+                      <img
+                        src="/pen1.svg"
+                        alt=""
+                        onClick={() => handleUpdate(item)}
+                      />
+                    </button>
+                    <button onClick={() => dispatch(removeData(item))}>
+                      <img src="/bin1.svg" alt="" />
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
         </ul>
       ) : (
-        <img src="/LIST.png" className="empty-img" />
+        <div className="empty-box">
+          <img src="/empty1.png" alt="" />
+          <h1 className="empty-box-title">Empty...</h1>
+        </div>
       )}
       <div className="add-btn" onClick={handleOpenModal}>
         <img src="/plus.svg" alt="" />
